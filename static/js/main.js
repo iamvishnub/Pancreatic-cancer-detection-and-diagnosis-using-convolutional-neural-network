@@ -48,11 +48,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: formData
                 });
                 
+                // 🔒 SAFETY CHECK
+                const contentType = response.headers.get("content-type");
+                
+                if (!contentType || !contentType.includes("application/json")) {
+                    throw new Error("Session expired or server error. Please log in again.");
+                }
+                
                 const data = await response.json();
                 
                 if (!response.ok || data.error) {
                     throw new Error(data.error || "An unexpected error occurred.");
                 }
+
                 
                 // Display processing steps
                 processingSteps.innerHTML = '';
