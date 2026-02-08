@@ -1,1 +1,1 @@
-# Pancreatic-cancer-detection-and-diagnosis-using-convolutional-neural-networks
+© 2026 Vishnu B. All rights reserved.
