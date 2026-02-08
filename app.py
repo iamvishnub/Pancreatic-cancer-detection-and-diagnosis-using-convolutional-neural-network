@@ -202,7 +202,16 @@ import os
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+from sqlalchemy import event
+from sqlalchemy.engine import Engine
+
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    "pool_pre_ping": True,   # ✅ checks connection before using it
+    "pool_recycle": 300      # ✅ refresh connection every 5 minutes
+}
+
 db = SQLAlchemy(app)
+
 
 # ML model
 model = joblib.load("pancreas_model.pkl")
