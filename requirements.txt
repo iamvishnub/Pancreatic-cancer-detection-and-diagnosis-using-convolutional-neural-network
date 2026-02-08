@@ -1,5 +1,6 @@
 flask
 flask_sqlalchemy
+flask_mail
 gunicorn
 numpy
 pandas
@@ -7,5 +8,6 @@ opencv-python-headless
 scikit-learn
 Pillow
 matplotlib
-
-
+reportlab
+google-generativeai
+joblib
