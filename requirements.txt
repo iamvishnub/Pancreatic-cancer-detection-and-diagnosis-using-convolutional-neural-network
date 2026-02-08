@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 flask
 flask_sqlalchemy
 gunicorn
@@ -7,6 +8,8 @@ opencv-python-headless
 scikit-learn
 Pillow
 matplotlib
+=======
+>>>>>>> 6c32aaf6c0f2e5c329efdf2c4051a1c84884c109
 flask
 gunicorn
 numpy
@@ -15,4 +18,15 @@ opencv-python-headless
 scikit-learn
 Pillow
 matplotlib
+<<<<<<< HEAD
+=======
+flask
+gunicorn
+numpy
+pandas
+opencv-python-headless
+scikit-learn
+Pillow
+matplotlib
+>>>>>>> 6c32aaf6c0f2e5c329efdf2c4051a1c84884c109
 
