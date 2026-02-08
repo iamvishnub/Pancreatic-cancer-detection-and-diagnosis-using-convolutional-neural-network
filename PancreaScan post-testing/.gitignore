@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Database (local only)
+*.db
+instance/
+
+# ML / Large files
+dataset/
+*.pkl
+
+# OS
+.DS_Store
