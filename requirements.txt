@@ -1,4 +1,12 @@
-<<<<<<< HEAD
+flask
+flask_sqlalchemy
+gunicorn
+numpy
+pandas
+opencv-python-headless
+scikit-learn
+Pillow
+matplotlib
 flask
 gunicorn
 numpy
@@ -7,13 +15,4 @@ opencv-python-headless
 scikit-learn
 Pillow
 matplotlib
-=======
-flask
-gunicorn
-numpy
-pandas
-opencv-python-headless
-scikit-learn
-Pillow
-matplotlib
->>>>>>> c5266a2e43bd298ee46abcad89f5b8385341478c
+
