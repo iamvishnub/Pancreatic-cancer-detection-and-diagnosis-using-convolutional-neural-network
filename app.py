@@ -17,7 +17,7 @@ from utils.image_processing import process_image, is_ct_scan_image
 from datetime import datetime, timedelta, timezone
 from flask_mail import Mail, Message
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyAHC0yxg6jmRDeIQcSo8TrBIBrMgkTChiE")
+genai.configure(api_key="GEMINI_API_KEY")
 import google.generativeai as genai
 import os
 from flask import jsonify, request
@@ -469,8 +469,8 @@ def analyze():
         from email.mime.base import MIMEBase
         from email import encoders
 
-        sender_email = "yourmedicalreport@gmail.com"
-        sender_password = "fwzbyfbushrjbfma"
+        sender_email = "MAIL_USERNAME"
+        sender_password = "MAIL_PASSWORD"
         receiver_email = user.email
 
         msg = MIMEMultipart()
@@ -551,9 +551,9 @@ def contact():
             from email.mime.text import MIMEText
             from email.mime.multipart import MIMEMultipart
 
-            sender_email = "yourmedicalreport@gmail.com"
-            sender_password = "fwzbyfbushrjbfma"  # Replace with your Gmail App Password
-            receiver_email = "yourmedicalreport@gmail.com"
+            sender_email = "MAIL_USERNAME"
+            sender_password = "MAIL_PASSWORD"  # Replace with your Gmail App Password
+            receiver_email = "MAIL_USERNAME"
 
             msg = MIMEMultipart()
             msg['From'] = sender_email
@@ -831,7 +831,7 @@ from flask import request, jsonify
 # ==============================
 # 🔐 Gemini Configuration
 # ==============================
-genai.configure(api_key="AIzaSyAHC0yxg6jmRDeIQcSo8TrBIBrMgkTChiE")
+genai.configure(api_key="GEMINI_API_KEY")
 
 # ==============================
 # 💬 Chatbot Route (using Gemini 2.5 Flash)
@@ -1360,8 +1360,8 @@ def mail_patient(user_id):
         from email.mime.text import MIMEText
         from email.mime.multipart import MIMEMultipart
 
-        sender_email = "yourmedicalreport@gmail.com"   # SMTP sender
-        sender_password = "fwzbyfbushrjbfma"           # App Password
+        sender_email = "MAIL_USERNAME"   # SMTP sender
+        sender_password = "MAIL_PASSWORD"           # App Password
 
         msg = MIMEMultipart()
         msg["From"] = f"Dr. {doctor_name} <{doctor_email}>"  # ✅ FIX #2
