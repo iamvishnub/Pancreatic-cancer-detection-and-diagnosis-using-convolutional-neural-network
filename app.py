@@ -230,7 +230,8 @@ def login_required(f):
     def decorated_function(*args, **kwargs):
         if 'user_id' not in session:
             flash('⚠️ Please log in to access this page.', 'warning')
-            return redirect(url_for('login', next=request.endpoint))
+            return jsonify({"error": "Authentication required"}), 401
+
         return f(*args, **kwargs)
     return decorated_function
 
@@ -307,7 +308,7 @@ def signup():
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash('⚠️ Email already registered. Please log in.', 'warning')
-            return redirect(url_for('login'))
+            return jsonify({"error": "Authentication required"}), 401
 
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         new_user = User(name=name, email=email, password=hashed_password,
@@ -315,7 +316,7 @@ def signup():
         db.session.add(new_user)
         db.session.commit()
         flash('✅ Account created successfully! Please log in.', 'success')
-        return redirect(url_for('login'))
+        return jsonify({"error": "Authentication required"}), 401
     return render_template('signup.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -339,7 +340,7 @@ def login():
 def logout():
     session.clear()
     flash('👋 Logged out successfully.', 'info')
-    return redirect(url_for('login'))
+    return jsonify({"error": "Authentication required"}), 401
 
 @app.route('/users')
 @login_required
@@ -385,7 +386,7 @@ def process():
 def dashboard():
     if 'user_id' not in session:
         flash('⚠️ Please log in to access your dashboard.', 'warning')
-        return redirect(url_for('login'))
+        return jsonify({"error": "Authentication required"}), 401
 
     user_id = session['user_id']
     user = User.query.get(user_id)
@@ -401,8 +402,12 @@ def about():
 # IMAGE ANALYSIS ROUTE
 # -------------------------------
 @app.route('/analyze', methods=['POST'])
-@login_required
 def analyze():
+    if 'user_id' not in session:
+        return jsonify({
+            "error": "Session expired. Please log in again."
+        }), 401
+
     global last_results
     if 'image' not in request.files:
         return jsonify({'error': 'No image uploaded'}), 400
@@ -1478,7 +1483,7 @@ def admin_panel():
     # --- Auth check ---
     if 'user_name' not in session or session['user_name'] != "Vishnu B":
         flash("🚫 Access denied. Only admin can view this page.", "danger")
-        return redirect(url_for('login'))
+        return jsonify({"error": "Authentication required"}), 401
 
     # --- Fetch base data ---
     users = User.query.all()
